@@ -1,0 +1,211 @@
+import { future, highlight } from '@mdx-deck/themes'
+
+export const theme = {
+  ...future,
+  ...highlight,
+}
+
+# Hello ReactJS!
+
+---
+
+# What is ReactJS?
+
+ReactJS is an UI library.
+
+It works describing the UI structure in **memory**.
+
+also defines some ways of changing this representation in memory.
+
+---
+
+# Let's describe an UI
+
+But just another concept: React abstracts parts of the UI into components.
+
+A component is a function that returns a React element.
+
+---
+
+```jsx
+import React from 'react'
+
+const MyComponent = (props) => {
+  // this is JSX 👇
+  return (
+    <div>
+      <h1 className='my-title'>Hello U.org</h1>
+    </div>
+  )
+}
+
+export default MyComponent
+```
+
+---
+
+# JSX - Javascript Extension
+
+JSX is not HTML. Babel will convert/compile it to React elements with `React.createElement`
+
+---
+
+This is the final output from previous component.
+
+```
+import React from 'react'
+
+const MyComponent = props => {
+
+  return React.createElement(
+    "div",
+    {},
+    React.createElement(
+      "h1",
+      {
+        className: "my-title"
+      },
+      "Hello U.org"
+    )
+  );
+}
+```
+
+---
+
+<Split>
+
+```jsx
+import React from 'react'
+
+const MyComponent = (props) => {
+  // this is JSX 👇
+  return (
+    <div>
+      <h1 className='my-title'>Hello U.org</h1>
+    </div>
+  )
+}
+```
+
+```
+import React from 'react'
+
+const MyComponent = props => {
+
+  return React.createElement(
+    "div",
+    {},
+    React.createElement(
+      "h1",
+      {
+        className: "my-title"
+      },
+      "Hello U.org"
+    )
+  );
+}
+```
+
+Note that this is an expression.
+
+</Split>
+
+---
+
+```jsx
+import React from 'react'
+
+const sayHello = (name) => 'Hello ' + name
+
+const MyComponent = (props) => {
+  // this is JSX 👇
+  return (
+    <div>
+      <h1 className='my-title'>{sayHello('U.org')}</h1>
+    </div>
+  )
+}
+```
+
+---
+
+```
+import React from 'react'
+
+const sayHello = (name) => 'Hello ' + name
+
+const MyComponent = props => {
+
+  return React.createElement(
+    "div",
+    {},
+    React.createElement(
+      "h1",
+      {
+        className: "my-title"
+      },
+      sayHello("U.org")
+    )
+  );
+}
+```
+
+---
+
+# So the UI is stored in memory
+
+How to see something on screen?
+
+Meet: `react-dom` (`react-native`, `react-vr`, ...)
+
+---
+
+# How does this work?
+
+- `react` represents the UI
+- `react-dom` reads this and reproduce it into real-DOM (the browser's DOM)
+- this process is know as **reconcilliation**
+- this process happens everytime the UI represented by `react` changes
+
+---
+
+# Pratical example:
+
+## With React.createElement
+
+https://codesandbox.io/s/with-createelement-v5gp6
+
+## Reconcilliation
+
+https://codesandbox.io/s/simple-example-v1vhx
+
+---
+
+# How to update an UI?
+
+Introducing `hooks` and `props`
+(practice)
+
+---
+
+# But React and React-dom
+
+Is a single page application (SPA)
+(a HTML file including a Javascript bundle)
+
+The main problem: this is not good for SEO and indexing.
+
+So pure `react` + `react-dom` is not indexed by search engines.
+
+---
+
+# NextJS
+
+NextJS is a fullstack web framework.
+
+Besides other things it renders the initial reconcilliation at the server and send it to the browser.
+
+---
+
+# NextJS practice
